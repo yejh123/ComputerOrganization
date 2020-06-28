@@ -1,0 +1,356 @@
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 1
+
+
+
+
+
+       MCS-51 Family Macro Assembler   A S E M - 5 1   V 1.3
+       =====================================================
+
+
+
+	Source File:	..\..\data.asm
+	Object File:	Debug.HEX
+	List File:	Debug.lst
+
+
+
+ Line  I  Addr  Code            Source
+
+    1:		N      0000	ORG 0000H
+    2:
+    3:					;0
+    4:	  0000	01			DB	00000001B ;HLT
+    5:	  0001	44			DB	01000100B ;IN R1
+    6:	  0002	69			DB	01101001B ;MOV R2,R1
+    7:	  0003	61			DB	01100001B ;MOV R0,R1
+    8:	  0004	D4			DB	11010100B ;ADD R1,80H
+    9:	  0005	80			DB	80H ;
+   10:
+   11:					;6
+   12:	  0006	C0			DB	11000000B ;SUB R0,IMM
+   13:	  0007	03			DB	03H ;
+   14:
+   15:	  0008	1C			DB	00011100B ;JS []
+   16:	  0009	0D			DB	00001101B ;13
+   17:
+   18:	  000A	68			DB	01101000B ;MOV R2,R0
+   19:	  000B	10			DB	00010000B ;JMP
+   20:	  000C	06			DB	00000110B ;6
+   21:
+   22:					;13
+   23:					;判断是否是0
+   24:	  000D	C8			DB	11001000B ;SUB R2,IMM
+   25:	  000E	00			DB	00H ;
+   26:	  000F	18			DB	00011000B ;JZ
+   27:	  0010	5A			DB	01011010B ;90
+   28:
+   29:					;判断是否是1
+   30:	  0011	C8			DB	11001000B ;SUB R2,IMM
+   31:	  0012	01			DB	01H ;
+   32:	  0013	18			DB	00011000B ;JZ
+   33:	  0014	67			DB	01100111B ;103
+   34:
+   35:					;21
+   36:					;执行加法
+   37:					;计数器
+   38:	  0015	3C			DB	00111100B ;SET R3,06H
+   39:	  0016	06			DB	00000110B ;
+   40:	  0017	9C			DB	10011100B ;STO R3,[FCH]
+   41:	  0018	FC			DB	11111100B ;
+   42:					;存储输入地址
+   43:	  0019	D4			DB	11010100B ;ADD R1,05H
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 2
+
+
+
+ Line  I  Addr  Code            Source
+
+   44:	  001A	05			DB	00000101B ;
+   45:	  001B	94			DB	10010100B ;STO R1,[FDH]
+   46:	  001C	FD			DB	11111101B ;
+   47:
+   48:					;29
+   49:					;获取学号地址
+   50:	  001D	34			DB	00110100B ;SET R1,115
+   51:	  001E	73			DB	01110011B ;115
+   52:	  001F	D7			DB	11010111B ;ADD R1,R3
+   53:					;获取一位学号
+   54:	  0020	81			DB	10000001B ;POP R0,[R1]
+   55:					;获取身份证号地址
+   56:	  0021	38			DB	00111000B ;SET R2,121
+   57:	  0022	79			DB	01111001B ;121
+   58:	  0023	DB			DB	11011011B ;ADD R2,R3
+   59:					;获取一位身份证号
+   60:	  0024	86			DB	10000110B ;POP R1,[R2]
+   61:	  0025	68			DB	01101000B ;MOV R2,R0
+   62:	  0026	6D			DB	01101101B ;MOV R3,R1
+   63:
+   64:					;39
+   65:					;计算低四位
+   66:	  0027	E0			DB	11100000B ;ANDI R0,0FH
+   67:	  0028	0F			DB	0FH ;
+   68:	  0029	E4			DB	11100100B ;ANDI R1,0FH
+   69:	  002A	0F			DB	0FH ;
+   70:					;计算高四位
+   71:	  002B	E8			DB	11101000B ;ANDI R2,F0H
+   72:	  002C	F0			DB	11110000B ;
+   73:	  002D	EC			DB	11101100B ;ANDI R3,F0H
+   74:	  002E	F0			DB	11110000B ;
+   75:
+   76:					;47
+   77:					;处理低四位相加
+   78:	  002F	D1			DB	11010001B ;ADD R0,R1
+   79:	  0030	64			DB	01100100B ;MOV R1,R0
+   80:	  0031	D0			DB	11010000B ;ADDI R0,11110110
+   81:	  0032	F6			DB	11110110B ;
+   82:	  0033	14			DB	00010100B ;JC []
+   83:	  0034	46			DB	01000110B ;70
+   84:
+   85:					;53
+   86:					;处理高四位相加
+   87:	  0035	DB			DB	11011011B ;ADD R2,R3
+   88:	  0036	D6			DB	11010110B ;ADD R1,R2
+   89:
+   90:					;55
+   91:					;获取输出地址
+   92:	  0037	8C			DB	10001100B ;LAD R3,[FDH]
+   93:	  0038	FD			DB	11111101B ;
+   94:					;存储计算结果
+   95:	  0039	97			DB	10010111B ;PUSH R1,[R3]
+   96:					;递减并存储输出地址
+   97:	  003A	2D			DB	00101101B ;DEC R3
+   98:	  003B	9C			DB	10011100B ;STO R3,[FDH]
+   99:	  003C	FD			DB	11111101B ;
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 3
+
+
+
+ Line  I  Addr  Code            Source
+
+  100:					;得到计数器，判断循环条件
+  101:	  003D	8C			DB	10001100B ;LAD R3,[FCH]
+  102:	  003E	FC			DB	11111100B ;
+  103:	  003F	2D			DB	00101101B ;DEC R3
+  104:	  0040	18			DB	00011000B ;JZ []
+  105:	  0041	4C			DB	01001100B ;76
+  106:
+  107:	  0042	9C			DB	10011100B ;STO R3,[FCH]
+  108:	  0043	FC			DB	11111100B ;
+  109:	  0044	10			DB	00010000B ;JUMP []
+  110:	  0045	1D			DB	00011101B ;29
+  111:
+  112:					;70
+  113:					;低位进位
+  114:	  0046	C4			DB	11000100B ;SUBI R1,0AH
+  115:	  0047	0A			DB	00001010B ;
+  116:	  0048	D8			DB	11011000B ;ADDI R2,00010000
+  117:	  0049	10			DB	00010000B ;
+  118:	  004A	10			DB	00010000B ;JUMP []
+  119:	  004B	35			DB	00110101B ;53
+  120:
+  121:					;76
+  122:					;循环Dout
+  123:	  004C	30			DB	00110000B ;SET R0,06H
+  124:	  004D	06			DB	00000110B ;
+  125:	  004E	84			DB	10000100B ;LAD R1,[FDH]
+  126:	  004F	FD			DB	11111101B ;
+  127:	  0050	24			DB	00100100B ;INC R1
+  128:
+  129:					;81
+  130:	  0051	89			DB	10001001B ;POP R2,[R1]
+  131:	  0052	01			DB	00000001B ;HLT
+  132:	  0053	58			DB	01011000B ;OUT R2,PORT0
+  133:	  0054	24			DB	00100100B ;INC R1
+  134:	  0055	21			DB	00100001B ;DEC R0
+  135:	  0056	18			DB	00011000B ;JZ []
+  136:	  0057	00			DB	00000000B
+  137:	  0058	10			DB	00010000B ;JUMP []
+  138:	  0059	51			DB	01010001B ;81
+  139:
+  140:
+  141:					;90
+  142:					;写入学号
+  143:					;设置计数器
+  144:	  005A	3C			DB	00111100B ;SET R3,06H
+  145:	  005B	06			DB	00000110B ;
+  146:	  005C	38			DB	00111000B ;SET R2,116
+  147:	  005D	74			DB	01110100B ;
+  148:					;94
+  149:	  005E	82			DB	10000010B ;POP R0,[R2]
+  150:	  005F	28			DB	00101000B ;INC R2
+  151:	  0060	91			DB	10010001B ;PUSH R0,[R1]
+  152:	  0061	24			DB	00100100B ;INC R1
+  153:	  0062	2D			DB	00101101B ;DEC R3
+  154:	  0063	18			DB	00011000B ;JZ []
+  155:	  0064	00			DB	00000000B
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 4
+
+
+
+ Line  I  Addr  Code            Source
+
+  156:	  0065	10			DB	00010000B ;JUMP []
+  157:	  0066	5E			DB	01011110B ;94
+  158:
+  159:					;写入身份证号
+  160:					;103
+  161:	  0067	3C			DB	00111100B ;SET R3,06H
+  162:	  0068	06			DB	00000110B ;
+  163:	  0069	38			DB	00111000B ;SET R2,122
+  164:	  006A	7A			DB	01111010B ;
+  165:					;107
+  166:	  006B	82			DB	10000010B ;POP R0,[R2]
+  167:	  006C	28			DB	00101000B ;INC R2
+  168:	  006D	91			DB	10010001B ;PUSH R0,[R1]
+  169:	  006E	24			DB	00100100B ;INC R1
+  170:	  006F	2D			DB	00101101B ;DEC R3
+  171:	  0070	18			DB	00011000B ;JZ []
+  172:	  0071	00			DB	00000000B
+  173:	  0072	10			DB	00010000B ;JUMP []
+  174:	  0073	6B			DB	01101011B ;107
+  175:
+  176:
+  177:					;116
+  178:	  0074	20			DB 20H
+  179:	  0075	18			DB 18H
+  180:	  0076	30			DB 30H
+  181:	  0077	58			DB 58H
+  182:	  0078	21			DB 21H
+  183:	  0079	80			DB 80H
+  184:					;122
+  185:	  007A	20			DB 20H
+  186:	  007B	00			DB 00H
+  187:	  007C	06			DB 06H
+  188:	  007D	23			DB 23H
+  189:	  007E	34			DB 34H
+  190:	  007F	16			DB 16H
+  191:				END
+  192:
+  193:
+  194:
+  195:
+  196:
+  197:
+  198:
+  199:
+  200:
+  201:
+  202:
+  203:
+  204:
+  205:
+  206:
+  207:
+  208:
+
+
+
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 5
+
+
+
+
+
+                     register banks used:  ---
+
+                     no errors
+
+
+
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 6
+
+
+
+
+
+	       L I S T   O F   S Y M B O L S
+	       =============================
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+??ASEM_51			  NUMBER    8051
+??VERSION			  NUMBER    0130
+AC				  BIT	      D6
+ACC				  DATA	      E0
+B				  DATA	      F0
+CY				  BIT	      D7
+DPH				  DATA	      83
+DPL				  DATA	      82
+EA				  BIT	      AF
+ES				  BIT	      AC
+ET0				  BIT	      A9
+ET1				  BIT	      AB
+EX0				  BIT	      A8
+EX1				  BIT	      AA
+EXTI0				  CODE	    0003
+EXTI1				  CODE	    0013
+F0				  BIT	      D5
+IE				  DATA	      A8
+IE0				  BIT	      89
+IE1				  BIT	      8B
+INT0				  BIT	      B2
+INT1				  BIT	      B3
+IP				  DATA	      B8
+IT0				  BIT	      88
+IT1				  BIT	      8A
+OV				  BIT	      D2
+P				  BIT	      D0
+P0				  DATA	      80
+P1				  DATA	      90
+P2				  DATA	      A0
+P3				  DATA	      B0
+PCON				  DATA	      87
+PS				  BIT	      BC
+PSW				  DATA	      D0
+PT0				  BIT	      B9
+PT1				  BIT	      BB
+PX0				  BIT	      B8
+PX1				  BIT	      BA
+RB8				  BIT	      9A
+RD				  BIT	      B7
+REN				  BIT	      9C
+RESET				  CODE	    0000
+RI				  BIT	      98
+RS0				  BIT	      D3
+RS1				  BIT	      D4
+RXD				  BIT	      B0
+SBUF				  DATA	      99
+SCON				  DATA	      98
+SINT				  CODE	    0023
+SM0				  BIT	      9F
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 7
+
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+SM1				  BIT	      9E
+SM2				  BIT	      9D
+SP				  DATA	      81
+T0				  BIT	      B4
+T1				  BIT	      B5
+TB8				  BIT	      9B
+TCON				  DATA	      88
+TF0				  BIT	      8D
+TF1				  BIT	      8F
+TH0				  DATA	      8C
+TH1				  DATA	      8D
+TI				  BIT	      99
+TIMER0				  CODE	    000B
+TIMER1				  CODE	    001B
+TL0				  DATA	      8A
+TL1				  DATA	      8B
+TMOD				  DATA	      89
+TR0				  BIT	      8C
+TR1				  BIT	      8E
+TXD				  BIT	      B1
+WR				  BIT	      B6

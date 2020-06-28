@@ -1,0 +1,9 @@
+课程设计报告：201830582180-叶劲亨-报告书.docx
+仿真电路：experiment CPU.pdsprj
+指令系统：指令系统.docx、PROGRAMS文件夹
+微指令系统（微指令集）：排序微指令集.txt
+微指令系统对应的 HEX 文件或 bin 文件：INSTRUCTIONS文件夹
+任务流程图：任务流程图文件夹
+汇编（机器）指令程序：main.asm
+汇编（机器）指令程序对应的 HEX 文件或 bin 文件：main.HEX
+任务验收说明：见报告书

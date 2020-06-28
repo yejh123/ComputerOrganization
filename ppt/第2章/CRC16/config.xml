@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<PowerTool>
+	<CommType>1</CommType>
+	<COMPort PortNo="3" BaudRate="921600" RevTimeOut="3000" FirstChar="3000">
+	</COMPort>
+	<Modem AddedNo="0" CalledNo="87115406" PortNo="1" BaudRate="19200" FirstChar="2000" RevTimeOut="2000">
+	</Modem>
+	<TCP IP="192.168.1.30" Port="10000" RevTimeOut="2000" FirstChar="3000">
+	</TCP>
+	<UDP IP="192.168.1.30" Port="10000" RevTimeOut="2000" FirstChar="3000">
+	</UDP>
+</PowerTool>

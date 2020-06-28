@@ -1,0 +1,165 @@
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 1
+
+
+
+
+
+       MCS-51 Family Macro Assembler   A S E M - 5 1   V 1.3
+       =====================================================
+
+
+
+	Source File:	..\..\PROGRAMS\PUSH_POP.ASM
+	Object File:	Debug.HEX
+	List File:	Debug.lst
+
+
+
+ Line  I  Addr  Code            Source
+
+    1:		N      0000	ORG	0000H
+    2:
+    3:	  0000	10			DB	00010000B ; JMP 08H
+    4:	  0001	08			DB	00001000B ;
+    5:	  0002	48			DB	01001000B ; 48H  'H'
+    6:	  0003	45			DB	01000101B ; 45H  'E'
+    7:
+    8:	  0004	4C			DB	01001100B ; 4CH  'L'
+    9:	  0005	4C			DB	01001100B ; 4CH  'L'
+   10:	  0006	4F			DB	01001111B ; 4FH  'O'
+   11:	  0007	21			DB	00100001B ; 21H  '!'
+   12:
+   13:	  0008	3C			DB	00111100B ; SET R3, 02H  ;main
+   14:	  0009	02			DB	00000010B
+   15:	  000A	38			DB	00111000B ; SET R2, 80H
+   16:	  000B	80			DB	10000000B
+   17:
+   18:	  000C	34			DB	00110100B ; SET R1, 06H
+   19:	  000D	06			DB	00000110B
+   20:	  000E	01			DB	00000001B ; HLT
+   21:	  000F	25			DB	00100101B ; DEC R1
+   22:
+   23:	  0010	83			DB	10000011B ; POP R0,[R3]
+   24:	  0011	2C			DB	00101100B ; INC R3
+   25:	  0012	92			DB	10010010B ; PUSH R0,[R2]
+   26:	  0013	28			DB	00101000B ; INC R2
+   27:
+   28:					;DB	01010000B ; OUT R0,PORT0
+   29:	  0014	00			DB	00000000B ; NOP
+   30:	  0015	27			DB	00100111B ; THR R1
+   31:	  0016	18			DB	00011000B ; JZ 1AH
+   32:	  0017	1A			DB	00011010B ;
+   33:
+   34:	  0018	10			DB	00010000B ;JMP 0FH
+   35:	  0019	0F			DB	00001111B ;
+   36:	  001A	01			DB	00000001B ; HLT
+   37:
+   38:				END
+
+
+
+
+
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 2
+
+
+
+                     register banks used:  ---
+
+                     no errors
+
+
+
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 3
+
+
+
+
+
+	       L I S T   O F   S Y M B O L S
+	       =============================
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+??ASEM_51			  NUMBER    8051
+??VERSION			  NUMBER    0130
+AC				  BIT	      D6
+ACC				  DATA	      E0
+B				  DATA	      F0
+CY				  BIT	      D7
+DPH				  DATA	      83
+DPL				  DATA	      82
+EA				  BIT	      AF
+ES				  BIT	      AC
+ET0				  BIT	      A9
+ET1				  BIT	      AB
+EX0				  BIT	      A8
+EX1				  BIT	      AA
+EXTI0				  CODE	    0003
+EXTI1				  CODE	    0013
+F0				  BIT	      D5
+IE				  DATA	      A8
+IE0				  BIT	      89
+IE1				  BIT	      8B
+INT0				  BIT	      B2
+INT1				  BIT	      B3
+IP				  DATA	      B8
+IT0				  BIT	      88
+IT1				  BIT	      8A
+OV				  BIT	      D2
+P				  BIT	      D0
+P0				  DATA	      80
+P1				  DATA	      90
+P2				  DATA	      A0
+P3				  DATA	      B0
+PCON				  DATA	      87
+PS				  BIT	      BC
+PSW				  DATA	      D0
+PT0				  BIT	      B9
+PT1				  BIT	      BB
+PX0				  BIT	      B8
+PX1				  BIT	      BA
+RB8				  BIT	      9A
+RD				  BIT	      B7
+REN				  BIT	      9C
+RESET				  CODE	    0000
+RI				  BIT	      98
+RS0				  BIT	      D3
+RS1				  BIT	      D4
+RXD				  BIT	      B0
+SBUF				  DATA	      99
+SCON				  DATA	      98
+SINT				  CODE	    0023
+SM0				  BIT	      9F
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 4
+
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+SM1				  BIT	      9E
+SM2				  BIT	      9D
+SP				  DATA	      81
+T0				  BIT	      B4
+T1				  BIT	      B5
+TB8				  BIT	      9B
+TCON				  DATA	      88
+TF0				  BIT	      8D
+TF1				  BIT	      8F
+TH0				  DATA	      8C
+TH1				  DATA	      8D
+TI				  BIT	      99
+TIMER0				  CODE	    000B
+TIMER1				  CODE	    001B
+TL0				  DATA	      8A
+TL1				  DATA	      8B
+TMOD				  DATA	      89
+TR0				  BIT	      8C
+TR1				  BIT	      8E
+TXD				  BIT	      B1
+WR				  BIT	      B6
